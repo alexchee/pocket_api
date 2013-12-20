@@ -1,4 +1,5 @@
 require 'httparty'
+require 'cgi'
 require "pocket_api/version"
 require "pocket_api/connection"
 
