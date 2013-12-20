@@ -35,7 +35,7 @@ module PocketApi
         failed_uri ||= redirect_uri
         @request_token = generate_request_token({:redirect_uri => failed_uri})
         
-        "#{default_options[:base_uri]}/v3/oauth/request?request_token=#{CGI.escape(request_token)}&redirect_uri=#{CGI.escape(redirect_uri)}#{"&state=#{CGI.escape(state)}"if state}"
+        "#{default_options[:base_uri]}/auth/authorize?request_token=#{CGI.escape(request_token)}&redirect_uri=#{CGI.escape(redirect_uri)}#{"&state=#{CGI.escape(state)}"if state}"
       end
       
     end # <<self
