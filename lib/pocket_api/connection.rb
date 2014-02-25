@@ -31,9 +31,8 @@ module PocketApi
         response.parsed_response["access_token"]
       end
       
-      def generate_authorize_url(redirect_uri, failed_uri=nil, state=nil)
-        failed_uri ||= redirect_uri
-        @request_token = generate_request_token({:redirect_uri => failed_uri})
+      def generate_authorize_url(redirect_uri, state=nil)
+        @request_token = generate_request_token({:redirect_uri => redirect_uri})
         
         "#{default_options[:base_uri]}/auth/authorize?request_token=#{CGI.escape(request_token)}&redirect_uri=#{CGI.escape(redirect_uri)}#{"&state=#{CGI.escape(state)}"if state}"
       end
