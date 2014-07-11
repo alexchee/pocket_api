@@ -79,7 +79,6 @@ module PocketApi
       arguments[1] ||= {}
       arguments[1][:body] ||= {}
       arguments[1][:body] = MultiJson.dump(arguments[1][:body].merge({:consumer_key => @client_key, :access_token => @access_token}))
-      puts arguments.inspect
       Connection.__send__(method.downcase.to_sym, *arguments)
     end
     
