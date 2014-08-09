@@ -5,7 +5,7 @@ Rubygem for Pocket (getpocket.com) API, formerly ReadItLater.
 
 Add this line to your application's Gemfile:
 
-    gem 'pocket_api'
+    gem 'getpocket'
 
 And then execute:
 
@@ -13,7 +13,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install pocket_api
+    $ gem install getpocket
 
 ## Usage
 
@@ -49,3 +49,6 @@ PocketApi::Connection.generate_access_token
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## TODO
+Create an Exception object for Pocket requests that parses header for "X-Error" and rate limiting stuff.
