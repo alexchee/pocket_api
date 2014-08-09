@@ -26,8 +26,10 @@ module PocketApi
         end
       end
       
-      def generate_access_token(request_token)
-        response = post("/auth/authorize", :body => MultiJson.dump({:code => (request_token || @request_token), :consumer_key => @client_key}), :headers => {"Content-Type" => "application/json; charset=UTF-8", "X-Accept" => "application/json"})
+      def generate_access_token(request_token=@request_token)
+        response = post("/v3/oauth/authorize", :body => MultiJson.dump({:code => request_token, :consumer_key => @client_key}), :headers => {"Content-Type" => "application/json; charset=UTF-8", "X-Accept" => "application/json"})
+        raise response.headers["X-Error"] if response.headers["X-Error"]
+        
         response.parsed_response["access_token"]
       end
       
