@@ -79,7 +79,10 @@ module PocketApi
       arguments[1] ||= {}
       arguments[1][:body] ||= {}
       arguments[1][:body] = MultiJson.dump(arguments[1][:body].merge({:consumer_key => @client_key, :access_token => @access_token}))
-      Connection.__send__(method.downcase.to_sym, *arguments)
+      response = Connection.__send__(method.downcase.to_sym, *arguments)
+      raise response.headers["X-Error"] if response.headers["X-Error"]
+
+      response.parsed_response
     end
     
   end # <<self
